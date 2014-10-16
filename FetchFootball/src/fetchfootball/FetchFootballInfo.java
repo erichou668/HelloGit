@@ -114,7 +114,7 @@ public class FetchFootballInfo {
         for (int row = 2; row < count; row++) {
         	for (int col = 0; col < colCount; col++) {
                 HtmlTableCell td = table.getCellAt(row, col); 
-    	        scoreLists[i][col] = td.asText().replace("\n", " ");
+    	        scoreLists[i][col] = td.asText().replace("\n", "->");
         	}
         	i++;
         }
