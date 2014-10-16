@@ -33,7 +33,7 @@ public class FetchFootballInfo {
         		pageUrlString = args[0];
         	}
         	
-            System.out.println("抓取页面：" + pageUrlString);
+            System.out.println("fetch page：" + pageUrlString);
         	
         	directionName = System.currentTimeMillis() + "";
         	FileWriteUtil.createDir(directionName);
@@ -60,7 +60,7 @@ public class FetchFootballInfo {
      * @param htmlPage
      */
     private static void fetchSuperFootballScore(HtmlPage htmlPage) {
-		System.out.println("******英格兰超级联赛赛程积分：抓取开始*******"); 
+		System.out.println("******fetch Super Football Score start*******"); 
         HtmlTable table = (HtmlTable)htmlPage.getElementById("Table2");
         int rowCount = 2;
         int colCount = 19;
@@ -83,7 +83,7 @@ public class FetchFootballInfo {
         	}
         }
         
-		System.out.println("******英格兰超级联赛赛程积分：抓取结束*******"); 
+		System.out.println("******fetch Super Football Score end*******"); 
     }
     
     /**
@@ -91,14 +91,14 @@ public class FetchFootballInfo {
      * @param htmlPage
      */
     private static void fetchAllScore(HtmlPage htmlPage) {
-        System.out.println("******总积分榜：抓取开始******"); 
+        System.out.println("******All football score start******"); 
         for (int i = 1; i < 7; i++) {
             String javaScriptCode = "SelectScore("+ i +");";
             ScriptResult result = htmlPage.executeJavaScript(javaScriptCode);
             HtmlPage scriptPage = (HtmlPage)result.getNewPage();
             parseAllResult(scriptPage, i);
         }
-        System.out.println("******总积分榜：抓取结束******"); 
+        System.out.println("******All football score end******"); 
     }
 
     /**
@@ -113,8 +113,11 @@ public class FetchFootballInfo {
         int i = 0;
         for (int row = 2; row < count; row++) {
         	for (int col = 0; col < colCount; col++) {
-                HtmlTableCell td = table.getCellAt(row, col); 
-    	        scoreLists[i][col] = td.asText().replace("\n", "->");
+                HtmlTableCell td = table.getCellAt(row, col);
+                String tdValue = td.asText();
+                tdValue = tdValue.replace("\r\n", " ");
+                tdValue = tdValue.replace("\n", " ");
+    	        scoreLists[i][col] = tdValue;
         	}
         	i++;
         }
@@ -164,8 +167,10 @@ public class FetchFootballInfo {
         for (int row = 1; row < rowCount; row++) {
         	for (int col = 0; col < colCount; col++) {
                 HtmlTableCell td = table.getCellAt(row, col); 
-                //System.out.println(i + ":" + col + "\r\n" + td.asText());
-    	        scoreLists[i][col] = td.asText();
+                String tdValue = td.asText();
+                tdValue = tdValue.replace("\r\n", " ");
+                tdValue = tdValue.replace("\n", " ");
+    	        scoreLists[i][col] = tdValue;
         	}
         	i++;
         }
