@@ -135,7 +135,7 @@ public class FetchFootballInfo {
         	contentString += "\r\n";
         }
         
-        String fileName = directionName + "/赛程积分第" + index + "轮" + "_" + ".csv";
+        String fileName = directionName + "/赛程积分第" + index + "轮" + ".csv";
 		try {
 			FileWriteUtil.writeStringToFile(fileName, contentString);
 		} catch (FileNotFoundException e) {
