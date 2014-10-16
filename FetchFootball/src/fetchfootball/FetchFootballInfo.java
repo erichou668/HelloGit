@@ -1,6 +1,8 @@
 /**
  * @description	获取网页信息并解析 
- * example: java -cp ./FetchFootball.jar:./htmlunit-2.15-OSGi.jar fetchfootball.FetchFootballInfo http://info.win007.com/cn/League.aspx?SclassID=36
+ * example: 
+ * linux/mac: java -cp ./FetchFootball.jar:./htmlunit-2.15-OSGi.jar fetchfootball.FetchFootballInfo http://info.win007.com/cn/League.aspx?SclassID=36
+ * windows: java -cp ./FetchFootball.jar;./htmlunit-2.15-OSGi.jar fetchfootball.FetchFootballInfo http://info.win007.com/cn/League.aspx?SclassID=36
  *
  * @author  侯少龙
  * @date	2014-10-12
